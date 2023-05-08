@@ -22,7 +22,7 @@ public class UploadController {
     @ResponseBody
     public String upload(@RequestBody List<GroupMsgReq> groupMsgReqList) {
         try {
-            log.info("[upload]:" + groupMsgReqList);
+            log.info("[upload]:" + groupMsgReqList.size());
             groupMsgService.saveInToDB(groupMsgReqList);
             return "success";
         } catch (Exception e) {

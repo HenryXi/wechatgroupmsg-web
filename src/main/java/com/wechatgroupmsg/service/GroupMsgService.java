@@ -1,6 +1,7 @@
 package com.wechatgroupmsg.service;
 
 import com.wechatgroupmsg.req.GroupMsgReq;
+import com.wechatgroupmsg.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +24,9 @@ public class GroupMsgService {
     }
 
     private String convertMsgListToString(List<GroupMsgReq> groupMsgReqs) {
-        StringBuilder sb = new StringBuilder(groupMsgReqs.get(0).getGroupName());
+        StringBuilder sb = new StringBuilder(groupMsgReqs.get(0).getGroupName()).append("<br>");
         for (GroupMsgReq msg : groupMsgReqs) {
-            sb.append(msg.getSender()).append(":").append(msg.getContent());
+            sb.append(DateUtil.getYMDHMS(msg.getCreateTime())).append("&nbsp;").append(msg.getSender()).append(":").append(msg.getContent()).append("<br>");
         }
         return sb.toString();
     }
