@@ -1,7 +1,6 @@
 package com.wechatgroupmsg.entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class GroupMsgExample {
@@ -335,52 +334,52 @@ public class GroupMsgExample {
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeEqualTo(Date value) {
+        public Criteria andUpdateTimeEqualTo(Long value) {
             addCriterion("update_time =", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotEqualTo(Date value) {
+        public Criteria andUpdateTimeNotEqualTo(Long value) {
             addCriterion("update_time <>", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThan(Date value) {
+        public Criteria andUpdateTimeGreaterThan(Long value) {
             addCriterion("update_time >", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andUpdateTimeGreaterThanOrEqualTo(Long value) {
             addCriterion("update_time >=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThan(Date value) {
+        public Criteria andUpdateTimeLessThan(Long value) {
             addCriterion("update_time <", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
+        public Criteria andUpdateTimeLessThanOrEqualTo(Long value) {
             addCriterion("update_time <=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIn(List<Date> values) {
+        public Criteria andUpdateTimeIn(List<Long> values) {
             addCriterion("update_time in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotIn(List<Date> values) {
+        public Criteria andUpdateTimeNotIn(List<Long> values) {
             addCriterion("update_time not in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
+        public Criteria andUpdateTimeBetween(Long value1, Long value2) {
             addCriterion("update_time between", value1, value2, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
+        public Criteria andUpdateTimeNotBetween(Long value1, Long value2) {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }

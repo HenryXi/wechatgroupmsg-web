@@ -8,7 +8,7 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="group_id" jdbcType="VARCHAR" property="groupId" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wechatgroupmsg.entity.GroupMsg">
     <!--
@@ -172,7 +172,7 @@
     -->
     insert into group_msg (id, group_id, update_time, 
       content)
-    values (#{id,jdbcType=INTEGER}, #{groupId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{groupId,jdbcType=VARCHAR}, #{updateTime,jdbcType=BIGINT}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wechatgroupmsg.entity.GroupMsg">
@@ -203,7 +203,7 @@
         #{groupId,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=BIGINT},
       </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
@@ -234,7 +234,7 @@
         group_id = #{record.groupId,jdbcType=VARCHAR},
       </if>
       <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=BIGINT},
       </if>
       <if test="record.content != null">
         content = #{record.content,jdbcType=LONGVARCHAR},
@@ -252,7 +252,7 @@
     update group_msg
     set id = #{record.id,jdbcType=INTEGER},
       group_id = #{record.groupId,jdbcType=VARCHAR},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=BIGINT},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -266,7 +266,7 @@
     update group_msg
     set id = #{record.id,jdbcType=INTEGER},
       group_id = #{record.groupId,jdbcType=VARCHAR},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+      update_time = #{record.updateTime,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -282,7 +282,7 @@
         group_id = #{groupId,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=BIGINT},
       </if>
       <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
@@ -297,7 +297,7 @@
     -->
     update group_msg
     set group_id = #{groupId,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=BIGINT},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -308,7 +308,7 @@
     -->
     update group_msg
     set group_id = #{groupId,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

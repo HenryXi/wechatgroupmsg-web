@@ -1,7 +1,5 @@
 package com.wechatgroupmsg.entity;
 
-import java.util.Date;
-
 public class GroupMsg {
     /**
      *
@@ -28,7 +26,7 @@ public class GroupMsg {
      *
      * @mbg.generated
      */
-    private Date updateTime;
+    private Long updateTime;
 
     /**
      *
@@ -95,7 +93,7 @@ public class GroupMsg {
      *
      * @mbg.generated
      */
-    public Date getUpdateTime() {
+    public Long getUpdateTime() {
         return updateTime;
     }
 
@@ -107,7 +105,7 @@ public class GroupMsg {
      *
      * @mbg.generated
      */
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
     }
 

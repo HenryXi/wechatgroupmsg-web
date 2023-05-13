@@ -26,7 +26,7 @@ public class GroupMsgService {
             GroupMsg groupMsg = new GroupMsg();
             groupMsg.setGroupId(groupId);
             groupMsg.setContent(resultContent);
-            groupMsg.setUpdateTime(new Date());
+            groupMsg.setUpdateTime(System.currentTimeMillis());
             groupMsgDao.save(groupMsg);
         }
     }
