@@ -24,7 +24,7 @@ public class Main {
     public DataSource dataSource() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://localhost:3306/wechatgroupmsg");
+        dataSourceBuilder.url("jdbc:mysql://localhost:3306/wechatgroupmsg?serverTimezone=UTC");
         dataSourceBuilder.username("root");
         dataSourceBuilder.password("50@@year");
         return dataSourceBuilder.build();
