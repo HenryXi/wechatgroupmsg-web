@@ -17,7 +17,12 @@ public class GroupMsgDao {
     private GroupMsgMapper mapper;
 
     public int save(GroupMsg groupMsg) {
-        return mapper.insert(groupMsg);
+        GroupMsg groupMsgInDB = selectByGroupId(groupMsg.getGroupId());
+        if (groupMsgInDB == null) {
+            return mapper.insert(groupMsg);
+        } else {
+            return update(groupMsg);
+        }
     }
 
     public int update(GroupMsg groupMsg) {
