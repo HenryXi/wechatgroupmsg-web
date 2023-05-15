@@ -21,17 +21,9 @@ public class GroupMsgDao {
         if (groupMsgInDB == null) {
             return mapper.insert(groupMsg);
         } else {
-            return update(groupMsg);
+            groupMsg.setId(groupMsgInDB.getId());
+            return mapper.updateByPrimaryKeyWithBLOBs(groupMsg);
         }
-    }
-
-    public int update(GroupMsg groupMsg) {
-        GroupMsg groupMsgInDB = selectByGroupId(groupMsg.getGroupId());
-        if (groupMsgInDB == null) {
-            return 0;
-        }
-        groupMsg.setId(groupMsg.getId());
-        return mapper.updateByPrimaryKeyWithBLOBs(groupMsg);
     }
 
     public GroupMsg selectByGroupId(String groupId) {
