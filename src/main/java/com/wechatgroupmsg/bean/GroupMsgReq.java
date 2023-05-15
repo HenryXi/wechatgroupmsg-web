@@ -1,4 +1,4 @@
-package com.wechatgroupmsg.req;
+package com.wechatgroupmsg.bean;
 
 import lombok.Data;
 

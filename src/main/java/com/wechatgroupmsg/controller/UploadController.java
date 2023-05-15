@@ -1,6 +1,6 @@
 package com.wechatgroupmsg.controller;
 
-import com.wechatgroupmsg.req.GroupMsgReq;
+import com.wechatgroupmsg.bean.GroupMsgReq;
 import com.wechatgroupmsg.service.GroupMsgService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,7 @@ public class UploadController {
     @RequestMapping("/upload")
     @ResponseBody
     public String upload(@RequestBody List<GroupMsgReq> groupMsgReqList) {
+        //todo change request body: group_info + msg_info
         try {
             log.info("[upload]:" + groupMsgReqList.size());
             groupMsgService.saveInToDB(groupMsgReqList);
