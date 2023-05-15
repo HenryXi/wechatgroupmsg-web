@@ -14,15 +14,13 @@
     <table class="table table-striped">
         <thead >
         <tr>
-            <th scope="col" class="col-md-1">发送时间</th>
             <th scope="col" class="col-md-2">发送人</th>
-            <th scope="col" class="col-md-8">内容</th>
+            <th scope="col" class="col-md-10">内容</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="msg : ${groupMsgBean.msgBeanList}">
-            <th scope="row">[[${msg.createTime}]]</th>
-            <td>[[${msg.sender}]]</td>
+            <td>[[${msg.createTime}]]：[[${msg.sender}]]</td>
             <td>[[${msg.content}]]</td>
         </tr>
         </tbody>
