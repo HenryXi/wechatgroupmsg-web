@@ -9,6 +9,8 @@ function search(){
 
 function clean(){
     $('#search_key').val('');
+    var groupId = $('#group_id').val()
+    location.href='/groupMsg/'+groupId;
 }
 
 function handle(){
