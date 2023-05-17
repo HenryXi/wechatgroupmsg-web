@@ -7,8 +7,8 @@ function search(){
     location.href='/groupMsg/'+groupId+'?s='+searchKeyWord;
 }
 
-function highlight(){
-
+function clean(){
+    $('#search_key').val('');
 }
 
 $(document).ready(function() {
