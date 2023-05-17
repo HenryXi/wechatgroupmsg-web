@@ -3,28 +3,49 @@
 <head>
     <title>[(${groupMsgBean.groupName})]</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/bootstrap.min.css}" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/bootstrap.min.css}"/>
     <script type="text/javascript" th:src="@{/static/js/bootstrap.js}"></script>
     <script type="text/javascript" th:src="@{/static/js/jquery-1.12.2.mina.js}"></script>
-
+    <script type="text/javascript" th:src="@{/static/js/common.js}"></script>
 </head>
 <body>
-<div th:if="${groupMsgBean.msgBeanList!=null && groupMsgBean.msgBeanList.size() > 0}" class="container">
-    <table class="table table-striped">
-        <thead >
-        <tr>
-            <th scope="col" class="col-md-2">发送人</th>
-            <th scope="col" class="col-md-10">内容</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="msg : ${groupMsgBean.msgBeanList}">
-            <td>[[${msg.createTime}]]：[[${msg.sender}]]</td>
-            <td>[[${msg.content}]]</td>
-        </tr>
-        </tbody>
-    </table>
+<div class="container-fluid container">
+    <div>
+        <form class="form-horizontal">
+            <div class="form-group col-md-10">
+                <label for="search_key" class="control-label">群名称：[(${groupMsgBean.groupName})]</label>
+            </div>
+            <div class="form-group col-md-10">
+                <div>
+                    <input type="text" class="form-control" id="search_key" placeholder="物品名称" th:value="${searchWord}">
+                    <input type="hidden" class="form-control" id="group_id" th:value="${groupMsgBean.groupId}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <button type="button" class="btn btn-default" onclick="search()">搜索</button>
+                    <button type="reset" class="btn btn-default">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div th:if="${groupMsgBean.msgBeanList!=null && groupMsgBean.msgBeanList.size() > 0}">
+        <table id="msg_table" class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col" class="col-md-2">发送人</th>
+                <th scope="col" class="col-md-10">内容</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="msg : ${groupMsgBean.msgBeanList}">
+                <td>[[${msg.createTime}]]：[[${msg.sender}]]</td>
+                <td>[[${msg.content}]]</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

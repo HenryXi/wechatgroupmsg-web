@@ -8,6 +8,7 @@ import com.wechatgroupmsg.entity.GroupMsgEntity;
 import com.wechatgroupmsg.util.DateUtil;
 import com.wechatgroupmsg.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,13 +51,16 @@ public class GroupMsgService {
         return JsonUtil.toJsonString(groupMsgBean);
     }
 
-    public String getRecentMsgByGroupId(String groupId) {
+    public GroupMsgBean getGroupMsgByGroupId(String groupId, String searchWord) {
         GroupMsgEntity groupMsg = groupMsgDao.selectByGroupId(groupId);
-        return groupMsg.getContent();
-    }
-
-    public GroupMsgBean getGroupMsgByGroupId(String groupId) {
-        GroupMsgEntity groupMsg = groupMsgDao.selectByGroupId(groupId);
-        return JsonUtil.fromJson(groupMsg.getContent(), GroupMsgBean.class);
+        GroupMsgBean groupMsgBean = JsonUtil.fromJson(groupMsg.getContent(), GroupMsgBean.class);
+        if (StringUtils.isNotEmpty(searchWord)) {
+            List<MsgBean> afterFilterList = groupMsgBean.getMsgBeanList().stream()
+                    .filter(m -> StringUtils.contains(m.getContent(), searchWord))
+                    .collect(Collectors.toList());
+            groupMsgBean.setMsgBeanList(afterFilterList);
+        }
+        groupMsgBean.setGroupId(groupId);
+        return groupMsgBean;
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @Controller
@@ -17,22 +17,12 @@ public class GroupMsgController {
     @Autowired
     private GroupMsgService groupMsgService;
 
-    @RequestMapping(value = "/gm/{groupId}", method = RequestMethod.GET)
-    @Deprecated
-    public String todayGroupMsg(@PathVariable String groupId) {
-        try {
-            return groupMsgService.getRecentMsgByGroupId(groupId);
-        } catch (Exception e) {
-            log.error("todayGroupMsg:", e);
-        }
-        return "error";
-    }
-
     @RequestMapping(value = "/groupMsg/{groupId}", method = RequestMethod.GET)
-    public String groupMsg(@PathVariable String groupId, Model model) {
+    public String groupMsg(@PathVariable String groupId, @RequestParam(name = "s", defaultValue = "") String searchWord, Model model) {
         try {
-            GroupMsgBean groupMsgBean = groupMsgService.getGroupMsgByGroupId(groupId);
+            GroupMsgBean groupMsgBean = groupMsgService.getGroupMsgByGroupId(groupId, searchWord);
             model.addAttribute("groupMsgBean", groupMsgBean);
+            model.addAttribute("searchWord", searchWord);
         } catch (Exception e) {
             log.error("todayGroupMsg:", e);
         }
