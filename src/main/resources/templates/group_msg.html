@@ -12,23 +12,23 @@
 <body>
 <div class="container-fluid container">
     <div>
-        <form class="form-horizontal">
+        <div class="form-horizontal">
             <div class="form-group col-md-10">
                 <label for="search_key" class="control-label">群名称：[(${groupMsgBean.groupName})]</label>
             </div>
             <div class="form-group col-md-10">
                 <div>
-                    <input type="text" class="form-control" id="search_key" placeholder="物品名称" th:value="${searchWord}">
+                    <input type="text" class="form-control" id="search_key" placeholder="物品名称" th:value="${searchWord}" onkeypress="handle()">
                     <input type="hidden" class="form-control" id="group_id" th:value="${groupMsgBean.groupId}">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-10">
-                    <button type="button" class="btn btn-default" onclick="search()">搜索</button>
+                    <button type="button" id="search_btn" class="btn btn-default" onclick="search()">搜索</button>
                     <button type="button" class="btn btn-default" onclick="clean()">重置</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
     <div th:if="${groupMsgBean.msgBeanList!=null && groupMsgBean.msgBeanList.size() > 0}">
         <table id="msg_table" class="table table-striped">

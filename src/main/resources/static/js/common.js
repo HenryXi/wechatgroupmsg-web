@@ -11,6 +11,12 @@ function clean(){
     $('#search_key').val('');
 }
 
+function handle(){
+    if(event.keyCode == 13){
+        $('#search_btn').click();
+    }
+}
+
 $(document).ready(function() {
     var searchKeyWord = $('#search_key').val();
     if(searchKeyWord == null || searchKeyWord==''){
