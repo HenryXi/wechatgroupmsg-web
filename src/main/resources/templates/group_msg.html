@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>[(${groupMsgBean.groupName})]</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -30,9 +30,9 @@
         </div>
     </div>
     <div th:if="${groupMsgBean.hasMsgCountItems()}">
-        <div class="alert alert-info" >
+        <div class="alert alert-info">
             <p th:each="msgCount : ${groupMsgBean.msgCount}">
-                发送<strong>"[[${msgCount.content}]]"消息的有</strong> [[${msgCount.count}]]人
+                <span>[[${msgCount.count}]]人</span>发送<strong>"[[${msgCount.content}]]"</strong>
             </p>
         </div>
     </div>

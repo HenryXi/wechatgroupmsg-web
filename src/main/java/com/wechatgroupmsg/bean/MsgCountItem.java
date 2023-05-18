@@ -9,8 +9,8 @@ public class MsgCountItem {
     private Long count;
 
     public MsgCountItem(String content, Long count) {
-        if (content.length() > 10) {
-            content = StringUtils.substring(content, 0, 10) + "...";
+        if (content.length() > 18) {
+            content = StringUtils.substring(content, 0, 18) + "...";
         }
         this.content = content;
         this.count = count;
