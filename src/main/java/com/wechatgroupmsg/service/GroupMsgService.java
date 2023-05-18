@@ -68,7 +68,7 @@ public class GroupMsgService {
         for (String content : msgCountMap.keySet()) {
             msgCountItemList.add(new MsgCountItem(content, msgCountMap.get(content)));
         }
-        msgCountItemList.sort(Comparator.comparing(MsgCountItem::getCount));
+        msgCountItemList.sort(Comparator.comparing(MsgCountItem::getCount, Comparator.reverseOrder()));
         groupMsgBean.setMsgCount(msgCountItemList);
         groupMsgBean.setMsgItemList(afterFilterList);
         return groupMsgBean;
