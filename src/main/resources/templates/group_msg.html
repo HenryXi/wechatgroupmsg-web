@@ -13,12 +13,11 @@
 <div class="container-fluid container">
     <div>
         <div class="form-horizontal">
-            <div class="form-group col-md-10">
-                <label for="search_key" class="control-label">群名称：[(${groupMsgBean.groupName})]</label>
-            </div>
+            <h4>群名称：[(${groupMsgBean.groupName})]</h4>
             <div class="form-group col-md-10">
                 <div>
-                    <input type="text" class="form-control" id="search_key" placeholder="物品名称" th:value="${searchWord}" onkeypress="handle()">
+                    <input type="text" class="form-control" id="search_key" placeholder="物品名称" th:value="${searchWord}"
+                           onkeypress="handle()">
                     <input type="hidden" class="form-control" id="group_id" th:value="${groupMsgBean.groupId}">
                 </div>
             </div>
@@ -30,7 +29,15 @@
             </div>
         </div>
     </div>
-    <div th:if="${groupMsgBean.msgBeanList!=null && groupMsgBean.msgBeanList.size() > 0}">
+    <div th:if="${groupMsgBean.hasMsgCountItems()}">
+        <div class="alert alert-info" >
+            <p th:each="msgCount : ${groupMsgBean.msgCount}">
+                发送<strong>"[[${msgCount.content}]]"消息的有</strong> [[${msgCount.count}]]人
+            </p>
+        </div>
+    </div>
+    <div th:if="${groupMsgBean.hasMsgItems()}">
+        <div class="divider"></div>
         <table id="msg_table" class="table table-striped">
             <thead>
             <tr>
@@ -39,7 +46,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="msg : ${groupMsgBean.msgBeanList}">
+            <tr th:each="msg : ${groupMsgBean.msgItemList}">
                 <td>[[${msg.createTime}]]：[[${msg.sender}]]</td>
                 <td>[[${msg.content}]]</td>
             </tr>
