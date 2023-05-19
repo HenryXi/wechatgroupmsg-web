@@ -26,7 +26,6 @@ public class GroupMsgService {
     private GroupMsgDao groupMsgDao;
 
     public void saveInToDB(List<GroupMsgReq> groupMsgReqList) {
-        //todo if data big there will oom
         Map<String, List<GroupMsgReq>> groupedMsg = groupMsgReqList.stream().collect(Collectors.groupingBy(GroupMsgReq::getGroupId));
         for (String groupId : groupedMsg.keySet()) {
             String resultContent = convertMsgListToString(groupedMsg.get(groupId));

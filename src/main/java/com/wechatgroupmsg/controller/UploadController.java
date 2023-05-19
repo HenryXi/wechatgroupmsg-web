@@ -21,7 +21,6 @@ public class UploadController {
     @RequestMapping("/upload")
     @ResponseBody
     public String upload(@RequestBody List<GroupMsgReq> groupMsgReqList) {
-        //todo change request body: group_info + msg_info
         try {
             log.info("[upload]:" + groupMsgReqList.size());
             groupMsgService.saveInToDB(groupMsgReqList);
