@@ -53,6 +53,3 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 }
-//todo 1. change request body: group_info(members' id) + msg_info(one request pre 10 group. not only one request),
-//todo 2. add index page for introduce myself and how to use
-//todo 3. add get url function(validate user, self_id+3 members'_id
