@@ -53,4 +53,5 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 }
-//todo add page for beautiful page
+//todo 1. get group meta info:members' id
+//todo 2. add index page for introduce myself and how to use
