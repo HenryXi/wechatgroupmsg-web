@@ -1,8 +1,11 @@
 # todo
 
-1. change request body: group_info(members' id) + msg_info(one request pre 10 group. not only one request),
-2. add index page for introduce myself and how to use
-3. add get url function(validate user, self_id+3 members'_id
-4. deploy two instances avoid service unusable
-5. send index url to douyin
-6. save phone db to baidu or save every msg in server db. to prevent clear msg(phone store size not enough)
+* 增加获取临时群消息页面，不做用户系统因为用户一定是机器人的微信好友。需要验证才能看消息，验证的方式就是自己的id以及群里任意三个人的id
+* 增加首页，描述这个产品如何使用
+* 部署两个实例，提高可用性
+* 在抖音上做推广
+* 优化上传接口，将群的mata信息和群消息区分开来上传，防止后面群消息太多一次处理不过来，可以分批处理。
+* 将消息逐条保存到服务器数据库，并做定时删除逻辑，这样每次上传信息都只是增量部分
+* 对手机上的数据库文件做备份，防止后面手机空间不够用删除的时候数据丢失
+* 增加管理控制台页面，用来展示现在一共有多少个群，以及是否有人发送消息给机器人
+* 
