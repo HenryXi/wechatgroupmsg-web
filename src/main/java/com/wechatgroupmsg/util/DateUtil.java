@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 
 public class DateUtil {
@@ -227,6 +228,7 @@ public class DateUtil {
      */
     public static final String getYMDHMS(long time) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(FORMAT_DATE_TIME_PATTERN);
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         Date date = new Date(time);
         return simpleDateFormat.format(date);
     }
