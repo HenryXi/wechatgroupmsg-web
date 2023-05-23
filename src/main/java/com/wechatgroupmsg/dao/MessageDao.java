@@ -45,7 +45,7 @@ public class MessageDao {
         MessageEntityExample.Criteria criteria = example.createCriteria();
         criteria.andCreateTimeGreaterThan(latestTimestamp);
         criteria.andTalkerEqualTo(chatroomName);
-        example.setOrderByClause("order by create_time desc");
+        example.setOrderByClause("create_time desc");
         return messageEntityMapper.selectByExample(example);
     }
 }
