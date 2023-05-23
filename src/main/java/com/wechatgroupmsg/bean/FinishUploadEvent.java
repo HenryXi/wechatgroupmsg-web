@@ -18,7 +18,7 @@ public class FinishUploadEvent {
 
     public static FinishUploadEvent of(List<MessageReq> messageReqs) {
         List<String> chatroomNames = messageReqs.stream().map(MessageReq::getTalker)
-                .filter(s -> !StringUtils.startsWith(s, "wxid")).collect(Collectors.toList());
+                .filter(s -> !StringUtils.startsWith(s, "wxid") && StringUtils.contains(s, "@chatroom")).distinct().collect(Collectors.toList());
         return new FinishUploadEvent(chatroomNames);
     }
 }
