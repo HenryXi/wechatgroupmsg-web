@@ -52,7 +52,7 @@ public class GroupMsgService {
 
     private void prepareData(ChatroomEntity entity, String groupName) {
         long twoDaysAgoMill = System.currentTimeMillis() - (2 * 86400 * 1000);
-        List<MessageEntity> messageEntities = messageDao.queryLastestMessages(entity.getChatroomname(), twoDaysAgoMill);
+        List<MessageEntity> messageEntities = messageDao.queryLatestMessages(entity.getChatroomname(), twoDaysAgoMill);
         List<MessageEntity> okMessages = messageEntities.stream().filter(m -> okMessage(m, entity.getRoomowner())).collect(Collectors.toList());
         String resultContent = convertMsgListToString(okMessages, groupName);
         GroupMsgEntity groupMsg = new GroupMsgEntity();

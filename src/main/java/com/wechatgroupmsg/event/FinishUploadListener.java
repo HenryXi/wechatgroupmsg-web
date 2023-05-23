@@ -15,11 +15,11 @@ public class FinishUploadListener {
     @Autowired
     private GroupMsgService groupMsgService;
 
-
-        @EventListener
-    public void myEvent(PayloadApplicationEvent<FinishUploadEvent> payloadApplicationEvent) {
-            FinishUploadEvent finishUploadEvent = payloadApplicationEvent.getPayload();
-            groupMsgService.prepareData(finishUploadEvent.getNewMsgChatroomNames());
-        }
+    @EventListener
+    public void finishUpload(PayloadApplicationEvent<FinishUploadEvent> payloadApplicationEvent) {
+        log.info("[finishUpload]begin");
+        FinishUploadEvent finishUploadEvent = payloadApplicationEvent.getPayload();
+        groupMsgService.prepareData(finishUploadEvent.getNewMsgChatroomNames());
+    }
 
 }

@@ -40,7 +40,7 @@ public class MessageDao {
         return messageEntityMapper.countByExample(example) > 0;
     }
 
-    public List<MessageEntity> queryLastestMessages(String chatroomName, long latestTimestamp) {
+    public List<MessageEntity> queryLatestMessages(String chatroomName, long latestTimestamp) {
         MessageEntityExample example = new MessageEntityExample();
         MessageEntityExample.Criteria criteria = example.createCriteria();
         criteria.andCreateTimeGreaterThan(latestTimestamp);
