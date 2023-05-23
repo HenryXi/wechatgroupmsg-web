@@ -44,7 +44,7 @@ public class GroupMsgService {
         Map<String, String> groupNameMap = contactEntities.stream()
                 .collect(Collectors.toMap(ContactEntity::getUsername, ContactEntity::getNickname));
         List<ChatroomEntity> chatroomEntities = chatroomDao.queryByChatroomNames(newMsgChatroomNames);
-        log.info("[prepareData]chatroomEntities:" + chatroomEntities);
+        log.info("[prepareData]chatroomEntities:" + new ArrayList<>(chatroomEntities));
         for (ChatroomEntity entity : chatroomEntities) {
             String groupName = groupNameMap.get(entity.getRoomowner());
             prepareData(entity, groupName);
