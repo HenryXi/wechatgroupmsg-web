@@ -17,6 +17,7 @@ public class ChatroomDao {
     private ChatroomEntityMapper chatroomEntityMapper;
 
     public void batchSave(List<ChatroomEntity> tobeSavedChatrooms) {
+        log.info("[batchSave]:"+tobeSavedChatrooms);
         for (ChatroomEntity entity : tobeSavedChatrooms) {
             save(entity);
         }
