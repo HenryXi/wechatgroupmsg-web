@@ -1,5 +1,6 @@
 package com.wechatgroupmsg;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -19,6 +20,7 @@ import javax.sql.DataSource;
 @EnableAutoConfiguration
 @SpringBootApplication
 @MapperScan("com.wechatgroupmsg.mapper")
+@Slf4j
 public class Main {
 
     @Value("${db_host}")
@@ -50,6 +52,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        log.info("begin start--------->");
         SpringApplication.run(Main.class, args);
+        log.info("success start--------->");
     }
 }
