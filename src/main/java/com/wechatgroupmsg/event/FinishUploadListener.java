@@ -17,9 +17,8 @@ public class FinishUploadListener {
 
     @EventListener
     public void finishUpload(PayloadApplicationEvent<FinishUploadEvent> payloadApplicationEvent) {
-        log.info("[finishUpload]begin");
         FinishUploadEvent finishUploadEvent = payloadApplicationEvent.getPayload();
+        log.info("[finishUpload]begin:" + finishUploadEvent);
         groupMsgService.prepareData(finishUploadEvent.getNewMsgChatroomNames());
     }
-
 }
