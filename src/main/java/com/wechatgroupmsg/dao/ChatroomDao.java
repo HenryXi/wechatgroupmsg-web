@@ -25,6 +25,10 @@ public class ChatroomDao {
     public void save(ChatroomEntity entity) {
         try {
             if (chatroomExist(entity.getChatroomname())) {
+                ChatroomEntityExample example = new ChatroomEntityExample();
+                ChatroomEntityExample.Criteria criteria = example.createCriteria();
+                criteria.andChatroomnameEqualTo(entity.getChatroomname());
+                chatroomEntityMapper.updateByExampleSelective(entity, example);
                 return;
             }
             chatroomEntityMapper.insert(entity);

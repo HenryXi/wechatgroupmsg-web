@@ -31,7 +31,7 @@ public class ChatroomService {
         entity.setChatroomname(chatroomReq.getChatroomname());
         entity.setMemberlist(chatroomReq.getMemberlist());
         entity.setRoomowner(chatroomReq.getRoomowner());
-        entity.setUpdateTime(chatroomReq.getUpdateTime());
+        entity.setUpdateTime(System.currentTimeMillis());
         return entity;
     }
 }

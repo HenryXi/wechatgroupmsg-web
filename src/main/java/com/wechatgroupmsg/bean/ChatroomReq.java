@@ -7,5 +7,4 @@ public class ChatroomReq {
     private String chatroomname;
     private String memberlist;
     private String roomowner;
-    private long updateTime;
 }
