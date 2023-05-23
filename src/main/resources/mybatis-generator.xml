@@ -41,5 +41,17 @@
             <property name="ignoreQualifiersAtRuntime" value="true"/>
             <property name="modelOnly" value="false"/>
         </table>
+        <table tableName="rcontact" domainObjectName="ContactEntity">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <property name="modelOnly" value="false"/>
+        </table>
+        <table tableName="chatroom" domainObjectName="ChatroomEntity">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <property name="modelOnly" value="false"/>
+        </table>
+        <table tableName="message" domainObjectName="MessageEntity">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <property name="modelOnly" value="false"/>
+        </table>
     </context>
 </generatorConfiguration>
