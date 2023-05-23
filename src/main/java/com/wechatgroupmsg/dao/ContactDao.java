@@ -40,4 +40,11 @@ public class ContactDao {
         criteria.andNicknameEqualTo(contactEntity.getNickname());
         return contactEntityMapper.countByExample(example) > 0;
     }
+
+    public List<ContactEntity> queryByUserNames(List<String> newMsgChatroomNames) {
+        ContactEntityExample example = new ContactEntityExample();
+        ContactEntityExample.Criteria criteria = example.createCriteria();
+        criteria.andUsernameIn(newMsgChatroomNames);
+        return contactEntityMapper.selectByExample(example);
+    }
 }

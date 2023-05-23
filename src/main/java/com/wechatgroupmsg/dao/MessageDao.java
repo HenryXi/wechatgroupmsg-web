@@ -39,4 +39,13 @@ public class MessageDao {
         criteria.andMsgSvrIdEqualTo(msgSvrId);
         return messageEntityMapper.countByExample(example) > 0;
     }
+
+    public List<MessageEntity> queryLastestMessages(String chatroomName, long latestTimestamp) {
+        MessageEntityExample example = new MessageEntityExample();
+        MessageEntityExample.Criteria criteria = example.createCriteria();
+        criteria.andCreateTimeGreaterThan(latestTimestamp);
+        criteria.andTalkerEqualTo(chatroomName);
+        example.setOrderByClause("order by create_time desc");
+        return messageEntityMapper.selectByExample(example);
+    }
 }

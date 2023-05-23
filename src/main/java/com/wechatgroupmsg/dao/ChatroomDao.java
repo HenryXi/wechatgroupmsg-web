@@ -17,7 +17,6 @@ public class ChatroomDao {
     private ChatroomEntityMapper chatroomEntityMapper;
 
     public void batchSave(List<ChatroomEntity> tobeSavedChatrooms) {
-        log.info("[batchSave]:"+tobeSavedChatrooms);
         for (ChatroomEntity entity : tobeSavedChatrooms) {
             save(entity);
         }
@@ -43,5 +42,12 @@ public class ChatroomDao {
         ChatroomEntityExample.Criteria criteria = example.createCriteria();
         criteria.andChatroomnameEqualTo(chatroomName);
         return chatroomEntityMapper.countByExample(example) > 0;
+    }
+
+    public List<ChatroomEntity> queryByChatroomNames(List<String> newMsgChatroomNames) {
+        ChatroomEntityExample example = new ChatroomEntityExample();
+        ChatroomEntityExample.Criteria criteria = example.createCriteria();
+        criteria.andChatroomnameIn(newMsgChatroomNames);
+        return chatroomEntityMapper.selectByExampleWithBLOBs(example);
     }
 }
