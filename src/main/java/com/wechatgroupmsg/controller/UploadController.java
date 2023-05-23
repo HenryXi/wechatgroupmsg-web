@@ -33,24 +33,11 @@ public class UploadController {
     @Autowired
     private ChatroomService chatroomService;
 
-    @RequestMapping("/upload")
-    @ResponseBody
-    public String upload(@RequestBody List<GroupMsgReq> groupMsgReqList) {
-        try {
-            log.info("[upload]:" + groupMsgReqList.size());
-            groupMsgService.saveInToDB(groupMsgReqList);
-            return "success";
-        } catch (Exception e) {
-            log.error("upload:", e);
-        }
-        return "error";
-    }
-
     @RequestMapping("/upload_rcontact")
     @ResponseBody
     public String uploadContact(@RequestBody List<RContactReq> rContactReqs) {
         try {
-            log.info("[upload]:" + rContactReqs.size());
+            log.info("[uploadContact]:" + rContactReqs.size());
             contactService.saveInToDB(rContactReqs);
             return "success";
         } catch (Exception e) {
@@ -63,7 +50,7 @@ public class UploadController {
     @ResponseBody
     public String uploadMessage(@RequestBody List<MessageReq> messageReqs) {
         try {
-            log.info("[upload]:" + messageReqs.size());
+            log.info("[uploadMessage]:" + messageReqs.size());
             messageService.saveInToDB(messageReqs);
             return "success";
         } catch (Exception e) {
@@ -76,7 +63,7 @@ public class UploadController {
     @ResponseBody
     public String uploadChatroom(@RequestBody List<ChatroomReq> chatroomReqs) {
         try {
-            log.info("[upload]:" + chatroomReqs.size());
+            log.info("[uploadChatroom]:" + chatroomReqs.size());
             chatroomService.saveInToDB(chatroomReqs);
             return "success";
         } catch (Exception e) {
