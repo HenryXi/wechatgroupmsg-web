@@ -18,10 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,17 +42,19 @@ public class GroupMsgService {
                 .collect(Collectors.toMap(ContactEntity::getUsername, ContactEntity::getNickname));
         List<ChatroomEntity> chatroomEntities = chatroomDao.queryByChatroomNames(newMsgChatroomNames);
         for (ChatroomEntity entity : chatroomEntities) {
-            String groupName = groupNameMap.get(entity.getRoomowner());
+            String groupName = groupNameMap.get(entity.getChatroomname());
             prepareData(entity, groupName);
         }
     }
 
     private void prepareData(ChatroomEntity entity, String groupName) {
+        List<String> usernames = Arrays.asList(StringUtils.split(entity.getMemberlist(), ";"));
+        List<ContactEntity> contactEntities = contactDao.queryByUserNames(usernames);
+        Map<String, String> nameMap = contactEntities.stream().collect(Collectors.toMap(ContactEntity::getUsername, ContactEntity::getNickname));
         long twoDaysAgoMill = System.currentTimeMillis() - (2 * 86400 * 1000);
         List<MessageEntity> messageEntities = messageDao.queryLatestMessages(entity.getChatroomname(), twoDaysAgoMill);
-        log.info("[messageEntities]:" + JsonUtil.toJsonString(messageEntities));
         List<MessageEntity> okMessages = messageEntities.stream().filter(m -> okMessage(m, entity.getRoomowner())).collect(Collectors.toList());
-        String resultContent = convertMsgListToString(okMessages, groupName);
+        String resultContent = convertMsgListToString(okMessages, groupName, nameMap);
         GroupMsgEntity groupMsg = new GroupMsgEntity();
         groupMsg.setGroupId(entity.getChatroomname());
         groupMsg.setContent(resultContent);
@@ -78,12 +77,11 @@ public class GroupMsgService {
         return true;
     }
 
-    private String convertMsgListToString(List<MessageEntity> messageEntityList, String groupName) {
+    private String convertMsgListToString(List<MessageEntity> messageEntityList, String groupName, Map<String, String> nameMap) {
         GroupMsgBean groupMsgBean = new GroupMsgBean();
         groupMsgBean.setGroupName(groupName);
         List<MsgItem> msgItemList = new ArrayList<>();
         for (MessageEntity messageEntity : messageEntityList) {
-            log.info("messageEntity:" + messageEntity.getContent());
             String[] senderAndContent = StringUtils.split(messageEntity.getContent(), ":\\n");
             if (senderAndContent.length != 2) {
                 continue;
@@ -91,7 +89,7 @@ public class GroupMsgService {
             MsgItem msgItem = new MsgItem();
             msgItem.setContent(senderAndContent[1]);
             msgItem.setCreateTime(DateUtil.getYMDHMS(messageEntity.getCreateTime()));
-            msgItem.setSender(senderAndContent[0]);
+            msgItem.setSender(nameMap.get(senderAndContent[0]));
             msgItemList.add(msgItem);
         }
         groupMsgBean.setMsgItemList(msgItemList);
