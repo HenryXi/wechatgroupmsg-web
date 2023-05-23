@@ -14,6 +14,7 @@ import com.wechatgroupmsg.entity.MessageEntity;
 import com.wechatgroupmsg.util.DateUtil;
 import com.wechatgroupmsg.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class GroupMsgService {
         Map<String, String> groupNameMap = contactEntities.stream()
                 .collect(Collectors.toMap(ContactEntity::getUsername, ContactEntity::getNickname));
         List<ChatroomEntity> chatroomEntities = chatroomDao.queryByChatroomNames(newMsgChatroomNames);
-        log.info("[prepareData]chatroomEntities:" + new ArrayList<>(chatroomEntities));
+        log.info("[prepareData]chatroomEntities:" + ArrayUtils.toString(chatroomEntities));
         for (ChatroomEntity entity : chatroomEntities) {
             String groupName = groupNameMap.get(entity.getRoomowner());
             prepareData(entity, groupName);
@@ -54,6 +55,7 @@ public class GroupMsgService {
     private void prepareData(ChatroomEntity entity, String groupName) {
         long twoDaysAgoMill = System.currentTimeMillis() - (2 * 86400 * 1000);
         List<MessageEntity> messageEntities = messageDao.queryLatestMessages(entity.getChatroomname(), twoDaysAgoMill);
+        log.info("[messageEntities]:" + ArrayUtils.toString(messageEntities));
         List<MessageEntity> okMessages = messageEntities.stream().filter(m -> okMessage(m, entity.getRoomowner())).collect(Collectors.toList());
         String resultContent = convertMsgListToString(okMessages, groupName);
         GroupMsgEntity groupMsg = new GroupMsgEntity();
