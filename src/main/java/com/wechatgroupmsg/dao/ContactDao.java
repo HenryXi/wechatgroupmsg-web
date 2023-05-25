@@ -45,6 +45,7 @@ public class ContactDao {
         ContactEntityExample example = new ContactEntityExample();
         ContactEntityExample.Criteria criteria = example.createCriteria();
         criteria.andUsernameIn(newMsgChatroomNames);
+        example.isDistinct()
         return contactEntityMapper.selectByExample(example);
     }
 }

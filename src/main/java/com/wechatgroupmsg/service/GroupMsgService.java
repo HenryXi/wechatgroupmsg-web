@@ -49,7 +49,8 @@ public class GroupMsgService {
 
     private void prepareData(ChatroomEntity entity, String groupName) {
         List<String> usernames = Arrays.asList(StringUtils.split(entity.getMemberlist(), ";"));
-        List<ContactEntity> contactEntities = contactDao.queryByUserNames(usernames);
+        List<String> distinctUsernames = usernames.stream().distinct().collect(Collectors.toList());
+        List<ContactEntity> contactEntities = contactDao.queryByUserNames(distinctUsernames);
         Map<String, String> nameMap = contactEntities.stream().collect(Collectors.toMap(ContactEntity::getUsername, ContactEntity::getNickname));
         long twoDaysAgoMill = System.currentTimeMillis() - (2 * 86400 * 1000);
         List<MessageEntity> messageEntities = messageDao.queryLatestMessages(entity.getChatroomname(), twoDaysAgoMill);
