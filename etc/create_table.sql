@@ -4,7 +4,7 @@ CREATE TABLE `rcontact` (
   `nickname` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `update_time` bigint NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `nameIdx` (`username`,`nickname`) USING BTREE
+  UNIQUE KEY `usernameIdx` (`username`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
 
 create TABLE `chatroom` (

@@ -37,7 +37,6 @@ public class ContactDao {
         ContactEntityExample example = new ContactEntityExample();
         ContactEntityExample.Criteria criteria = example.createCriteria();
         criteria.andUsernameEqualTo(contactEntity.getUsername());
-        criteria.andNicknameEqualTo(contactEntity.getNickname());
         return contactEntityMapper.countByExample(example) > 0;
     }
 
