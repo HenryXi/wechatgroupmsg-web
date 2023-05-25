@@ -38,7 +38,7 @@ public final class JsonUtil {
         return GSON.toJson(object);
     }
 
-    public static <T> T fromJson(String str, Class<T> clazz) {
+    public static <T> T fromJson(String str, Type clazz) {
         return GSON.fromJson(str, clazz);
     }
 

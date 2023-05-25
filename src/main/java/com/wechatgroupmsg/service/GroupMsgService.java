@@ -51,7 +51,7 @@ public class GroupMsgService {
         List<String> usernames = Arrays.asList(StringUtils.split(entity.getMemberlist(), ";"));
         List<ContactEntity> contactEntities = contactDao.queryByUserNames(usernames);
         log.info("contactEntities:" + JsonUtil.toJsonString(contactEntities));
-        Map<String, String> nameMap = contactEntities.stream().collect(Collectors.toMap(ContactEntity::getUsername, ContactEntity::getNickname));
+        Map<String, String> nameMap = contactEntities.stream().collect(Collectors.toMap(ContactEntity::getUsername, ContactEntity::getNickname, (a, b) -> a));
         long twoDaysAgoMill = System.currentTimeMillis() - (2 * 86400 * 1000);
         List<MessageEntity> messageEntities = messageDao.queryLatestMessages(entity.getChatroomname(), twoDaysAgoMill);
         List<MessageEntity> okMessages = messageEntities.stream().filter(m -> okMessage(m, entity.getRoomowner())).collect(Collectors.toList());
